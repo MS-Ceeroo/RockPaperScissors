@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+    console.log("Hello, World! Welcome to Rock Paper Scissors! Play until theres 5 wins/losses in total :)")
+    
+    function computerPlay(){
+      let result = Math.floor(Math.random() * 3);
+      switch(result){
+        case 0:
+          return 'Rock';
+          break;
+        case 1:
+          return 'Paper';
+          break;
+        case 2:
+          return 'Scissors';
+          break;
+        default:
+        console.log("Sorry, something went wrong in computerPlay.")
+      }
+    }
+
+    function playerPlay(){
+      let selection
+      do{
+      let input = prompt("Select Rock, Paper or Scissors");
+      selection = capitalize(input);
+      if(selection !=='Rock' && selection !=='Paper' && selection !=='Scissors'){
+        console.log(`ERROR! You entered ${input}, please enter Rock, Paper or Scissors!`);
+      }
+      }
+      while(selection !=='Rock' && selection !=='Paper' && selection !=='Scissors')
+      return selection;
+    }
+    
+    function roundResult(playerSelection, computerSelection){
+        if (playerSelection === 'Rock'){
+          if (computerSelection === 'Rock'){
+            return `It's a draw, both Players selected Rock.`;
+          } else if(computerSelection === 'Paper'){
+            return `You lose! Paper beats Rock.`;
+          } else if (computerSelection === 'Scissors'){
+            return `You win! Rock beats Scissors.`;
+          }
+        }
+
+        if (playerSelection === 'Paper'){
+          if (computerSelection === 'Rock'){
+            return `You win! Paper beats Rock.`;
+          } else if (computerSelection === 'Paper'){
+            return `It's a draw, both Players selected Rock.`;
+          } else if (computerSelection === 'Scissors'){
+            return `You lose! Scissors beat Paper.`;
+          }
+        }
+
+        if (playerSelection === 'Scissors'){
+          if (computerSelection === 'Rock'){
+            return `You lose! Rock beats Scissors.`;
+          } else if (computerSelection === ' Paper'){
+            return `You win! Scissors beat Paper.`;
+          } else if (computerSelection === 'Scissors'){
+            return `It's a draw, both Players selected Scissors`;
+          }
+        }
+    }
+
+    function capitalize(text){
+        let firstLetter = text.charAt(0).toUpperCase();
+        let rest = text.slice(1).toLowerCase();
+        return firstLetter + rest
+    }
+
+    let n=5;
+    let win = 0;
+    let lose = 0;
+    for(i=0; i<n; i++){
+    const computerSelection = computerPlay();
+    const playerSelection = playerPlay();
+    console.log(`The computer chose: ${computerSelection}.`);
+    console.log(`Player chose: ${playerSelection}.`);
+    console.log(`Round ${i}: ${roundResult(playerSelection,computerSelection)}`);
+    let drawCheck = roundResult(playerSelection,computerSelection)
+    if(drawCheck.slice(0,11)=== `It's a draw`){
+      console.log(`Since it's a draw we are gonna play an additional Round!`)
+      n++
+    }
+    if(drawCheck.slice(0,8)=== `You win!`){
+      win++
+    }
+    if(drawCheck.slice(0,9)=== `You lose!`){
+       lose++
+    }
+    }
+    console.table([[`wins;`,win],[`lost:`,lose]])
+
+  </script>
+</body>
+</html>
