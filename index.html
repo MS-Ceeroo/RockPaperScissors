@@ -85,7 +85,7 @@
     const playerSelection = playerPlay();
     console.log(`The computer chose: ${computerSelection}.`);
     console.log(`Player chose: ${playerSelection}.`);
-    console.log(`Round ${i}: ${roundResult(playerSelection,computerSelection)}`);
+    console.log(`Round ${i+1}: ${roundResult(playerSelection,computerSelection)}`);
     let drawCheck = roundResult(playerSelection,computerSelection)
     if(drawCheck.slice(0,11)=== `It's a draw`){
       console.log(`Since it's a draw we are gonna play an additional Round!`)
